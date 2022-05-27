@@ -19,7 +19,17 @@ const Content = () => {
             item: "Item 3"
         }
     ]);
-
+    const handleCheck1 = ()=>{
+        console.log('You clicked it')
+    }
+    const handleCheck2 = (name)=>{
+        console.log(`${name} clicked it`)
+    }
+    const handleCheck3 = (e)=>{
+        console.log(e)
+        console.log(e.target)
+        console.log(e.target.innerText)
+    }
     const handleCheck = (id) => {
         const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
         setItems(listItems);
@@ -34,6 +44,13 @@ const Content = () => {
 
     return (
         <main>
+            <button onClick={handleCheck1}>Click It</button>
+            {/* function will be immediately called with the way below */}
+            <button onClick={handleCheck2('Emily')}>Click It</button> 
+            {/* when you need to pass a parameter, you need a anonymous function to call the function you want to apply. As below */}
+            <button onClick={() => handleCheck2('Emily')}>Click It</button>
+            <button onClick={(e) => handleCheck3(e)}>Click It</button>
+
             {items.length ? (
                 <ul>
                     {items.map((item) => (
